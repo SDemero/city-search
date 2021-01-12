@@ -12,13 +12,13 @@ class App extends Component {
       zipCodes:[],
     }
     
-    this.cityValueChange = this.cityValueChange.bind(this)
-    this.activateSearch = this.activateSearch.bind(this)
+    this.cityValueChange = this.city.bind(this)
+    this.activateSearch = this.search.bind(this)
 
   }
 
  
-  cityValueChange(event) { 
+  city(event) { 
     var city = event.target.value;
     this.setState({
       cityValue:city,
@@ -26,7 +26,7 @@ class App extends Component {
     console.log('city:',city)
   }
 
-  activateSearch() {
+  search() {
     let city = this.state.cityValue;
     city = city.toUpperCase();
     fetch('http://ctp-zip-api.herokuapp.com/city/' + city)
@@ -41,7 +41,7 @@ class App extends Component {
       console.log('jsonResponse:',jsonResponse)
       const zipCodes = jsonResponse.map((zip, idx) => {
         return <div>
-         <OneZipCode data={zip} city={city} key={idx}/>
+         <zipCode data={zip} city={city} key={idx}/>
         </div>
       });
       this.setState({
@@ -70,8 +70,8 @@ class App extends Component {
 
         <CitySearch 
           cityValue={this.state.cityValue}
-          handleChange={this.cityValueChange}
-          handleClick={this.activateSearch}
+          handleChange={this.city}
+          handleClick={this.search}
         />
         
         {this.state.cityValue  ? <h3>City: {this.state.cityValue}</h3>:<div></div>}
@@ -87,7 +87,7 @@ class App extends Component {
 
 
 }
-function OneZipCode(props) {
+function zipCode(props) {
   return (
     <div className="row">
       <div className="col-xs-12">
@@ -109,7 +109,7 @@ function CitySearch(props) {
   return (
     <div>
       <br/>
-      <label>Ente City Name:</label><br/>
+      <label>Enter City Name:</label><br/>
       <input 
       type="text"
       id="city"
