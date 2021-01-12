@@ -2,43 +2,6 @@ import React, { Component } from 'react';
 import img1 from './img/img1.png';
 import './App.css';
 
-function OneZipCode(props) {
-  return (
-    <div className="row">
-      <div className="col-xs-12">
-        <div className="panel panel-default">
-          <div className="panel-title">
-            <div className="panel-body">
-              <p>zipcode: {props.data}</p>
-              
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  )
-}
-
-
-function CitySearch(props) {
-  return (
-    <div>
-      <br/>
-      <label>Ente City Name:</label><br/>
-      <input 
-      type="text"
-      id="city"
-      className="form-control"
-      value={props.cityValue}
-      onChange={props.handleChange}
-      placeholder="Try Brooklyn"
-      />
-      <button onClick={props.handleClick}>
-        Search
-      </button>
-    </div>
-  )
-}
 
 
 class App extends Component {
@@ -55,7 +18,7 @@ class App extends Component {
   }
 
  
-  cityValueChange(event) {
+  cityValueChange(event) { 
     var city = event.target.value;
     this.setState({
       cityValue:city,
@@ -123,5 +86,42 @@ class App extends Component {
 
 
 
+}
+function OneZipCode(props) {
+  return (
+    <div className="row">
+      <div className="col-xs-12">
+        <div className="panel panel-default">
+          <div className="panel-title">
+            <div className="panel-body">
+              <p>zipcode: {props.data}</p>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+
+function CitySearch(props) {
+  return (
+    <div>
+      <br/>
+      <label>Ente City Name:</label><br/>
+      <input 
+      type="text"
+      id="city"
+      className="form-control"
+      value={props.cityValue}
+      onChange={props.handleChange}
+      placeholder="Try Brooklyn"
+      />
+      <button onClick={props.handleClick}>
+        Search
+      </button>
+    </div>
+  )
 }
 export default App;
