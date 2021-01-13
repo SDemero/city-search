@@ -29,8 +29,10 @@ class App extends Component {
   activateSearch() {
     let city = this.state.cityValue;
     city = city.toUpperCase();
+    console.log("pre-fetch")
     fetch('http://ctp-zip-api.herokuapp.com/city/' + city)
     .then((response) => {
+      console.log("fetching response:" , response)
       if(response) {
         return response.json();
       } else {
